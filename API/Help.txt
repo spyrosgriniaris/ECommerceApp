@@ -1,0 +1,11 @@
+STEP BY STEP CREATION OF PROJECT USING VS CODE
+
+API BASICS
+
+1) Creation of controllers - Entities
+2) Install EntityFrameworkCore same version as yours .net core and sqlserver. Then add connectionstring and configure in services'
+3) Install dotnet tool install --global dotnet-ef --version 3.1.403 + install Microsoft.EntityFrameworkCore.Design + dotnet ef migrations add InitialCreate -o Data/Migrations
+4) Create Core project dotnet new classlib -o Core of classlib type and dotnet new classlib -o Infrastucture that will contain the store context
+5) Add projects to sln  dotnet sln add Core/
+6) Add reference of projects to API. run dotnet add reference ../Infrastructure and dotnet add reference ../Core from API
+7) Add reference from Core to Infrastructure and run dotnet restore from root to register the references. Then check and correct namespaces if necessary and injections in csproj files
