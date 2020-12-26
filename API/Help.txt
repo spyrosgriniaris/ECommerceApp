@@ -1,3 +1,13 @@
+#############################################################################################
+#                                                                                           #
+#   This file contains the steps of creating the current                                    #
+#   web application                                                                         #
+#                                                                                           #
+#                                                                                           #
+#                                                                                           #
+#                                                                                           #
+#############################################################################################
+
 STEP BY STEP CREATION OF PROJECT USING VS CODE
 
 API BASICS
@@ -23,3 +33,18 @@ API ARCHITECTURE
 5) Do migrations again dotnet ef migrations remove -p Infrastructure -s API, dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
 6) Change program to create db from there
 7) Create SeedData, StoreContextSeed and let program know to seed when app starts
+
+-----------------------------------------------------------------------------------------
+
+API GENERIC REPOSITORY
+
+1) Create generic repo and add in startup
+2) Specification method for situations like include
+3) Create ISpecification, BaseSpecification, SpecificationEvaluator and change repo calls to generic in controller
+4) Create Dtos
+5) Install AutoMapper.Extensions.Microsoft.DependencyInjection in API and add it as service in startup
+    Then reform controller to retun dtos
+6) Create custom automapper value resolver in helpers for picture urls, to add all path in value -> add apiurl in appsettings and complete in mapping profiles
+7) Serving static content from api (like images using url in postman)
+    7.1) Create wwwroot in API and add images folder
+    7.2) Add app.UseStaticFiles() in Startup
