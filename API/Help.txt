@@ -9,3 +9,17 @@ API BASICS
 5) Add projects to sln  dotnet sln add Core/
 6) Add reference of projects to API. run dotnet add reference ../Infrastructure and dotnet add reference ../Core from API
 7) Add reference from Core to Infrastructure and run dotnet restore from root to register the references. Then check and correct namespaces if necessary and injections in csproj files
+8) git init, git add ., git commit -m "dfs", git remote add origin https://github.com/spyrosgriniaris/ECommerceApp.git, git push -u origin master
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+API ARCHITECTURE
+
+1) Add repo and interface and add as a service in startup and change product controller ctor args and calls to repo from methods
+2) Add productType and brand and add dbsets
+3) Create the new db -> dotnet ef database drop -p Infrastructure -s API in root, dotnet ef migrations remove -p Infrastructure -s API
+    dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
+4) Create Data/Config and ProductConfiguration. This will be used to configure the entities there and not in StoreContext. Add OnModelCreating in StoreContext
+5) Do migrations again dotnet ef migrations remove -p Infrastructure -s API, dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
+6) Change program to create db from there
+7) Create SeedData, StoreContextSeed and let program know to seed when app starts
