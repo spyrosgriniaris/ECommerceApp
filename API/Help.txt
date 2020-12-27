@@ -48,3 +48,27 @@ API GENERIC REPOSITORY
 7) Serving static content from api (like images using url in postman)
     7.1) Create wwwroot in API and add images folder
     7.2) Add app.UseStaticFiles() in Startup
+
+-----------------------------------------------------------------------------------------
+
+API ERROR HANDLING
+
+1) Create BaseApiController and make productscontroller to derive from it
+2) Create BuggyController to test errors
+3) Create consistent error response
+    3.1) Create folder Errors in API and ApiResponse.cs and use this class in buggyController
+4) Add notfound endpoint error handler
+    4.1) Create in API Errors -> ErrorController
+    4.2) Add app.UseStatusCodePagesWithReExecute("/errors/{0}"); in startup
+5) Exception handler middleware
+    5.1) Create Errors -> ApiException.cs
+    5.2) Create in API folder Middleware and ExceptionMiddleware.cs
+    5.3) Use this middleware in startup and not developmentpage
+6) Validation errors (in api/5 i have api/five, wrong type of value in url, form fields errors etc)
+    6.1) Create ApiValidationErrorResponse and configure in startup
+There are now consistent error responses with statusCode,message,Errors(fields where they occur)
+7) Add Swagger in API (Swashbuckle.AspNetCore.SwaggerGen and SwaggerUI latest versions) and configure in Configure and ConfigureServices
+    7.1) Add [ApiExplorerSettings(IgnoreApi = true)] in Error and weather controller. In localhost/swagger i can see the documentation
+    7.2) Add Attributes tou getproduct in product controller
+8) Cleaning the Startup class. Add folder Extensions in API and ApplicationServicesExtensions.cs
+    8.1) Add swaggerserviceextensions
