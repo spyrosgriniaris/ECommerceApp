@@ -72,3 +72,31 @@ There are now consistent error responses with statusCode,message,Errors(fields w
     7.2) Add Attributes tou getproduct in product controller
 8) Cleaning the Startup class. Add folder Extensions in API and ApplicationServicesExtensions.cs
     8.1) Add swaggerserviceextensions
+
+//              specification pattern
+//              sto base exw ta pedia, sto spec ta gemizw kai sto evaluator ta ftiaxnw pou to kalw apo ti generic
+
+-----------------------------------------------------------------------------------------------
+
+PAGING/SORTING/FILTERING
+
+1) Add sorting specification class
+    1.1) Add OrderBy and OrderByDescending in ISpecification and implement interface in BaseSpecification
+    1.2) Refine query in specificationevaluator
+    1.3) Add param sort in getproducts and specification class
+    1.4) Change ProductsWithTypesAndBrandsSpecification class for sort
+2) Filtering
+    Add brandId and typeId in controller and follow same procedure
+3) Add Pagination
+    3.1) Add properties in ISpecification and implment in BaseSpecification
+    3.2) Refine query produced in SpecificationEvaluator for paging
+    3.3) Create class in Core ProductSpecParams to store all params in GetProducts and not sort, brandId etc
+    3.4) Add in spec class
+    3.5) Create class Pagination in Helpers
+    3.6) Add method Count async in IGenericrepo and implement
+    3.7) Create ProductsWithFiltersForCountSpecification class
+    3.8) Change getproducts to return pagination and not ireadonlylist
+    3.9) Change return in getProducts
+4) Search functionality
+    4.1) Add fields in ProductSpecParams and ProductsWithTypesAndBrandsSpecification and ProductsWithFiltersForCountSpecification
+5) Add CORS Support
