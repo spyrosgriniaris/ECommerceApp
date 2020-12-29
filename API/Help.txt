@@ -100,3 +100,16 @@ PAGING/SORTING/FILTERING
 4) Search functionality
     4.1) Add fields in ProductSpecParams and ProductsWithTypesAndBrandsSpecification and ProductsWithFiltersForCountSpecification
 5) Add CORS Support
+
+-------------------------------------------------------------------------------------------------------
+
+SETTING UP ANGULAR DEVELOPMENT ENVIRONMENT
+
+1) Add project with ng new
+2) Setting up Angular to use https
+    2.1) Create folder ssl and place the certificates. Then install certs pes instructions
+    2.2) angular.json -> serve -> options, add 
+            "sslKey": "ssl/server.key",
+            "sslCert": "ssl/server.crt",
+            "ssl": true
+3) Add ngx bootstrap ng add ngx-bootstrap, npm install font-awesome, add "./node_modules/font-awesome/css/font-awesome.min.css" in styles
