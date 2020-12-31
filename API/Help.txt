@@ -113,3 +113,11 @@ SETTING UP ANGULAR DEVELOPMENT ENVIRONMENT
             "sslCert": "ssl/server.crt",
             "ssl": true
 3) Add ngx bootstrap ng add ngx-bootstrap, npm install font-awesome, add "./node_modules/font-awesome/css/font-awesome.min.css" in styles
+
+---------------------------------------------------------------------------------------------------------
+
+UI BASICS
+
+1) Add navbar
+2) Retrieve data from api
+3) Create products interface (app -> models)
