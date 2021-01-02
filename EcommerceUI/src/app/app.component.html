@@ -1,11 +1,23 @@
-<app-nav-bar></app-nav-bar>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Online shop">
+    <meta name="keywords" content="Shop, online shop, ecommerce">
+    <meta name="author" content="Spyridon Gkriniaris">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <app-nav-bar></app-nav-bar>
+    <div class="container" style="margin-top: 140px;">
+        <app-shop></app-shop>
+    </div>
+</body>
+</html> 
 
-<div class="container" style="margin-top: 140px;">
-    <h1>Welcome to {{title}}</h1>
-    <ul>
-        <li class="list-unstyled" *ngFor="let product of products">
-            {{product.name}}
-        </li>
-    </ul>
-</div>
+
+
+
+
 

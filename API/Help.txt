@@ -121,3 +121,20 @@ UI BASICS
 1) Add navbar
 2) Retrieve data from api
 3) Create products interface (app -> models)
+
+----------------------------------------------------------------------------------------------------------
+
+BUILDING THE UI
+
+1) Organize files and folders (Core, Shared, Feature)
+    1.1) ng g m core (create core module). Create also modules shop, share
+    1.2) ng g c shop --flat --skip-tests create shop component in shop module (flat doesn't make seperate folder)
+    1.3) create shop service ng g s shop --skip-tests --flat
+    1.4) Create shop routing ng g m shop-routing --flat
+    1.5) Move navBar in Core module and add declaration in core.module.ts. Remove navBar comp from declarations in app.module and add CoreModule in imports
+        Finally, add NavBarComponent in exports of core.module.ts. Move models folder in share module
+    1.6) Add content in shop service and consume from shop component and place list of products from app to shop component. Import shop module in app module and export shop component from shop module
+    1.7) Design shop page. Shop component.html
+    1.8) Create product-item component, add models and service calls for filters. Create OrderBy
+    1.9) Add pagination functionality. It will go in shared module. Might need to use later. Export it and import ShareModule on shopmodule
+    1.10) Making pagination a shared component
