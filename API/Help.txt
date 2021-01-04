@@ -138,3 +138,15 @@ BUILDING THE UI
     1.8) Create product-item component, add models and service calls for filters. Create OrderBy
     1.9) Add pagination functionality. It will go in shared module. Might need to use later. Export it and import ShareModule on shopmodule
     1.10) Making pagination a shared component
+
+-------------------------------------------------------------------------------------------------------------
+
+CLIENT SIDE ROUTING
+
+1) Create home (ng g m home) and home component ng g c home --skip-tests --flat and create produc-details component
+2) Creating the routes. Populate routes in app-routing. Set up the nav links. import routermodule in core
+3) Get individual product. (method in service)
+4) Add lazy loading
+    4.1) Add variable routes in shop-routing, import routerModule and not CommonModule and add routerModule to exports
+    4.2) import shop-routing in shop.module and not routermodule
+    4.3) Delete from app.module imports shopModule and from exports of shop.module the shopComponent

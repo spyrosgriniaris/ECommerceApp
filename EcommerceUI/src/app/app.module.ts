@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'
+import { CoreModule } from './core/core.module';
+import { HomeModule } from './home/home.module';
 
 
 import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
-import { ShopModule } from './shop/shop.module';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { ShopModule } from './shop/shop.module';
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
-    ShopModule
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
