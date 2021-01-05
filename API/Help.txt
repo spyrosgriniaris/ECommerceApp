@@ -150,3 +150,20 @@ CLIENT SIDE ROUTING
     4.1) Add variable routes in shop-routing, import routerModule and not CommonModule and add routerModule to exports
     4.2) import shop-routing in shop.module and not routermodule
     4.3) Delete from app.module imports shopModule and from exports of shop.module the shopComponent
+
+---------------------------------------------------------------------------------------------------------------
+
+CLIENT SIDE ERROR HANDLING
+
+1) create component in core test-error (ng g c test-error --skip-tests) and add it in approuting. Then add it in Contact in navbar
+    also add not-found and server-error components in core
+2) Http Interceptor to catch errors
+    2.1) Create folder interceptors in core and inside error.interceptor.ts and add it in providers of app.module. This is for
+        404 and 500 erros status.
+3) Toast notifications for 400 error
+    3.1) install npm install ngx-toastr and import it in core.module and add "./node_modules/ngx-toastr/toastr.css", in angular.json styles
+        and add if statements in interceptor
+4) Handling validation errors like api/products/fortytwo
+    4.1) modify first if clause
+5) Improving the internal error server component
+    5.1) Enhance error.interceptor at error 500 and add content in server-error.component.ts and html
