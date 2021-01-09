@@ -167,3 +167,35 @@ CLIENT SIDE ERROR HANDLING
     4.1) modify first if clause
 5) Improving the internal error server component
     5.1) Enhance error.interceptor at error 500 and add content in server-error.component.ts and html
+
+-------------------------------------------------------------------------------------------------------------------
+
+STYLING OUR WEBSITE
+
+1) Adding a section header component. import core module in app module, export sectionheader from core and add section header in app component html.
+2) Adding breadcrumbs
+    2.1) Add package from npmjs npm install --save xng-breadcrumb, add it in core module and add html in section-header. It needs a data property in route. 
+        So we add it in app-routing routes
+    2.2) Add breadcrumb in shop routing and set alias in product details and add styles in styles.scss
+3) Setting the section header title from breadcrumb service. Add in section-header.ts and html
+4) style product items
+5) change theme with bootswatch  ( Check themestr.app )
+    5.1) npm install bootswatch, add it in styles in angular.json
+6) Adding loading indicators
+    6.1) npm install ngx-spinner and import in app.module.ts and add it in app.component.html
+    6.2) Create folder in core Services that not neccessarily belong to a feature ng g s busy --flat --skip-tests and add content in service
+    6.3) Create loading.interceptor.ts and add content
+    6.4) Add interceptor in providers of app.module.ts
+7) Cleanig up loading issues
+    7.1) Add content in productDetails component
+8) Adding the home page content
+    8.1) Import and export carousel module and import shareModule in homeModule
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+API - Basket
+
+Goal: Store the customer basket in the server memory and create supporting repository and controller. In memory(server) Redis will be used.
+    It is also used for cached. Supports strings, hashes, lists, sets, etc
+
+1) Setting up Redis

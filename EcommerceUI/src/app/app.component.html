@@ -9,11 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <ngx-spinner>
+        <h3>Loading...</h3>
+    </ngx-spinner>
     <app-nav-bar></app-nav-bar>
-    <div class="container" style="margin-top: 140px;">
+    <app-section-header></app-section-header>
+
+    <div>
         <!-- there was app-shop before routing -->
         <router-outlet></router-outlet>
     </div>
+
 </body>
 </html> 
 

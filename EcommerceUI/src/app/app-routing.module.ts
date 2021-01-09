@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { HomeComponent } from './home/home.component';
-import { ShopComponent } from './shop/shop.component';
-import { ProductDetailsComponent } from './shop/product-details/product-details.component';
 import { TestErrorComponent } from './core/test-error/test-error.component';
 import { ServerErrorComponent } from './core/server-error/server-error.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
 
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'test-error', component: TestErrorComponent},
-  {path: 'server-error', component: ServerErrorComponent},
-  {path: 'not-found', component: NotFoundComponent},
+  {path: '', component: HomeComponent, data: {breadcrump: 'Home'}},
+  {path: 'test-error', component: TestErrorComponent, data: {breadcrump: 'Test Errors'}},
+  {path: 'server-error', component: ServerErrorComponent, data: {breadcrump: 'Server Error'}},
+  {path: 'not-found', component: NotFoundComponent, data: {breadcrump: 'Not Found'}},
   // shop module will be activated when we access the shop path and not from the beggining
-  {path: 'shop', loadChildren: () => import('././shop/shop.module').then(mod => mod.ShopModule)},
+  {path: 'shop', loadChildren: () => import('././shop/shop.module').then(mod => mod.ShopModule), data: {breadcrump: 'Shop'}},
   // {path: 'shop/:id', component: ProductDetailsComponent},
-  {path: '**', redirectTo: '', pathMatch: 'full'}
+  {path: '**', redirectTo: 'not-found', pathMatch: 'full'}
 ];
 
 @NgModule({
