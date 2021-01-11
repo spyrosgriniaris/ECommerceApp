@@ -198,4 +198,12 @@ API - Basket
 Goal: Store the customer basket in the server memory and create supporting repository and controller. In memory(server) Redis will be used.
     It is also used for cached. Supports strings, hashes, lists, sets, etc
 
-1) Setting up Redis
+1) Setting up Redis. Install nuget StackExhange.Redis in Infrastructure. Add in Startup for redis. Add conection string in appsettings.dev.json
+    We'll install a redis server locally. Then in our prod server.
+2) Setting the Basket class. Add entity in core
+3) Create basket repository  in Core. We don't use the generic repo bc basket will not use ef, but will query directly redis db.
+    Create BasketRepository in Infrastructure. Add it as a service in ApplicationServicesExtensions.cs
+4) Implement the BasketRepository
+5) Adding the basket controller
+6) Install Redis on Windows
+    6.1) redis.io. Install chocolatey and follow instructions for powershell. Restart powershell as admin again and run choco install redis-64
