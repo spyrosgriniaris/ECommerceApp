@@ -15,6 +15,8 @@ const routes: Routes = [
   // shop module will be activated when we access the shop path and not from the beggining
   {path: 'shop', loadChildren: () => import('././shop/shop.module').then(mod => mod.ShopModule), data: {breadcrump: 'Shop'}},
   // {path: 'shop/:id', component: ProductDetailsComponent},
+  {path: 'basket', loadChildren: () => import('././basket/basket.module').then(mod => mod.BasketModule), data: {breadcrump: 'Basket'}},
+  {path: 'checkout', loadChildren: () => import('././checkout/checkout.module').then(mod => mod.CheckoutModule), data: {breadcrump: 'Checkout'}},
   {path: '**', redirectTo: 'not-found', pathMatch: 'full'}
 ];
 

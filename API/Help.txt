@@ -207,3 +207,29 @@ Goal: Store the customer basket in the server memory and create supporting repos
 5) Adding the basket controller
 6) Install Redis on Windows
     6.1) redis.io. Install chocolatey and follow instructions for powershell. Restart powershell as admin again and run choco install redis-64
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+CLIENT -BASKET
+
+1) Create the basket module.
+    1.1) inside app -> ng g m basket
+    1.2) inside basket module -> ng g m basket-routing --flat
+    1.3) ng g c basket --flat --skip-tests, ng g s basket --flat --skip-tests
+    1.4) Set routes in app-routing and basket routing and add routermodule in basket module. Add routerLink in navbar to basket
+2) Create the basket types
+    2.1)npm install uuid and add basket in models
+3) Basket service methods
+4) Add the add item to basket in te component method
+5) Persist the basket in startup (get the basket and not only the basket id) in app.component.ts
+6) Display the basket item count in the navbar -> nav-bar.ts & html. Add the basket$ observable in basket component.ts and html
+7) Styling the basket page
+8) Add the basket totals to the service
+    8.1) Add IBasketTotal interface, add method in service and also call it from getBasket and setBasket
+9) Create the order summary component (Create new component in shared)
+    9.1) ng g c order-totals --skip-tests. Add html. Export it from shareModule and import ShareModule from BasketModule.
+        Add component in basket component
+    9.2) Increment and decrement in service. Add methods to basket components
+    9.3) Hooking up the product detail component to the basket (Increment, Decrement and add to cart)
+10) Adding the checkout module ng g m checkout, ng g m checkout-routing --flat, ng g s checkout --flat --skip-tests, ng g c checkout --flat --skip-tests
+    10.1) Add routing and then route to app-routing

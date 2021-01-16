@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './share/models/product';
+import { BasketService } from './basket/basket.service';
 
 
 @Component({
@@ -12,10 +13,21 @@ export class AppComponent implements OnInit{
   title = 'EcommerceUI';
   products: IProduct[];
 
-  constructor() {
+  constructor(private basketService: BasketService) {
 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const basketId = localStorage.getItem('basket_id');
+    if (basketId) {
+      this.basketService.getBasket(basketId).subscribe(
+        () => {
+          console.log('Initialized basket');
+        }, error => {
+          console.log(error);
+        }
+      );
+    }
+  }
 
 }
