@@ -1,5 +1,6 @@
 using API.Errors;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.TestControllers
@@ -45,6 +46,12 @@ namespace API.Controllers.TestControllers
         public ActionResult GetNotFoundRequest(int id)
         {
             return Ok();
+        }
+
+        [HttpGet("testauth")]
+        [Authorize]
+        public ActionResult<string> GetSecretText() {
+            return "secret stuff";
         }
     }
 }

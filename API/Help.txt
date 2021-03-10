@@ -233,3 +233,29 @@ CLIENT -BASKET
     9.3) Hooking up the product detail component to the basket (Increment, Decrement and add to cart)
 10) Adding the checkout module ng g m checkout, ng g m checkout-routing --flat, ng g s checkout --flat --skip-tests, ng g c checkout --flat --skip-tests
     10.1) Add routing and then route to app-routing
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+IDENTITY - API
+1) Setting up the identity packages (Microsoft.AspNetCore.Identity.EntityFrameworkCore tin latest  in Core), (Microsoft.AspNetCore.Identity latest sto infra),
+    Microsoft.IdentityModel.Tokens sto infra, System.IdentityModel.Tokens.Jwt sto infra, Microsoft.AspNetCore.Authentication.JwtBearer sto API
+2) Setting up the identity classes (in Core), folder Identity, classes in there. Then Add the Identity DbContext in the Infrastructure project(folder Identity).
+    Add it as additional service in startup class and add connection string
+3) Adding migration. from sln run (dotnet ef migrations add IdentityInitial -p Infrastructure -s API -c AppIdentityDbContext -o Identity/Migrations)
+4) Seeding Identity data (AppIdentityDbContextSeed.cs) in Infrastructure
+    Add the startup services for identity (with extension method, to keep startup as clean as possible) -> IdentityServiceExtensions in Api->Extensions
+    Add extension class and the reference in startup.cs
+5) Adding entity to program class, in program.cs add service. then run project from api
+6) Add AccountController
+7) Registering a user (create register method)
+8) Adding a token generation service. Create Token Service and its interface
+9) Setting up identity to use the token
+    Configure auth in IdentityServiceExtensions. Add in appsetting.json the token key. prosthetw sto configure tis startup to add.authentication
+10) Testing the token. Add service in ApplicationServicesExtensions. Use service for token in AccountController.
+    Create testauth method in BuggyController to test auth
+11) Add additional account methods
+12) Adding user manager extension methods. Point is to include Address in userManager. Create class UserManagerExtensions.cs an change in acount controller 
+    to call extension methods. We need to add another dto for user, because json does not know which address to return, because address class has AppUser, which also
+    has address inside. Create AddressDto and create new map.
+    When returning address, we return dto. Add method in accountController to update the address

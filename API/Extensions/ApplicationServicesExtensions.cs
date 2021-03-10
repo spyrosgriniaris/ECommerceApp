@@ -2,8 +2,10 @@ using System.Linq;
 using API.Errors;
 using Core.Interfaces;
 using Core.Interfaces.Basket;
+using Core.Interfaces.Identity;
 using Infrastructure.Data;
 using Infrastructure.Data.Basket;
+using Infrastructure.Data.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +18,7 @@ namespace API.Extensions
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
             services.AddScoped<IBasketRepository, BasketRepository>();
+            services.AddScoped<ITokenService, TokenService>();
 
             services.Configure<ApiBehaviorOptions>(options => {
                 options.InvalidModelStateResponseFactory = actioncontext => {

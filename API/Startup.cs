@@ -3,6 +3,7 @@ using API.Helpers;
 using API.Middleware;
 using AutoMapper;
 using Infrastructure.Data;
+using Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,7 @@ namespace API
         {
             services.AddControllers();
             services.AddDbContext<StoreContext>(x => x.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AppIdentityDbContext>(x => x.UseSqlServer(_configuration.GetConnectionString("IdentityConnection")));
             services.AddSingleton<IConnectionMultiplexer>(c => {
                 var configuration = ConfigurationOptions.Parse(_configuration.GetConnectionString("Redis"),
                     true);
@@ -36,6 +38,7 @@ namespace API
 
             //added for extensions
             services.AddApplicationServices();
+            services.AddIdentityServices(_configuration); // vonfig added in identity step
             services.AddSwaggerDocumentation();
             services.AddCors(opt => 
             {
@@ -65,6 +68,7 @@ namespace API
             //CORS
             app.UseCors("CorsPolicy");
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSwaggerDocumentation();

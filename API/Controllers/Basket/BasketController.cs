@@ -14,7 +14,7 @@ namespace API.Controllers.Basket
         }
 
         [HttpGet]
-        public async Task<ActionResult<CustomerBasket>> GetBasketId(string basketId) 
+        public async Task<ActionResult<CustomerBasket>> GetBasketId([FromBody]string basketId) 
         {
             var basket = await _basketRepository.GetBasketAsync(basketId);
 
