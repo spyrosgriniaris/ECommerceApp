@@ -238,6 +238,7 @@ CLIENT -BASKET
 
 
 IDENTITY - API
+
 1) Setting up the identity packages (Microsoft.AspNetCore.Identity.EntityFrameworkCore tin latest  in Core), (Microsoft.AspNetCore.Identity latest sto infra),
     Microsoft.IdentityModel.Tokens sto infra, System.IdentityModel.Tokens.Jwt sto infra, Microsoft.AspNetCore.Authentication.JwtBearer sto API
 2) Setting up the identity classes (in Core), folder Identity, classes in there. Then Add the Identity DbContext in the Infrastructure project(folder Identity).
@@ -259,3 +260,12 @@ IDENTITY - API
     to call extension methods. We need to add another dto for user, because json does not know which address to return, because address class has AppUser, which also
     has address inside. Create AddressDto and create new map.
     When returning address, we return dto. Add method in accountController to update the address
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+API Validation (validate incomming data with annotation etc)
+
+1) Model Validation. AddressDto annotations added.
+2) Checking for duplicate email addresses. RegisterDto annotations. Add code line to check for duplicate email in accountController register
+3) Validating the basket. Add Dtos for basket entities and change parameters related in basketController
+4) config swagger. Add code in swaggerserviceextensions
