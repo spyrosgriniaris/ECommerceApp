@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-center mt-5">
+    <div class="col-3">
+        <div class="login-form">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <h2 class="text-center">Log in</h2>     
+                <!-- Inputs changed with reusable components  
+                <div class="form-group">
+                    <input formControlName="email" type="email" class="form-control" placeholder="Email address" id="inputEmail">
+                    <span class="text-danger"
+                     *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched && loginForm.get('email').errors['required']">
+                     Email address is required
+                    </span>
+                    <span class="text-danger"
+                     *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched && loginForm.get('email').errors['pattern']">
+                     Email address is not valid
+                    </span>
+                </div>
+                
+                -->
+                <app-text-input formControlName="email" [controlName]="'Email address'"></app-text-input>
+                <app-text-input formControlName="password" [controlName]="'Password'" [type]="'password'"></app-text-input>
+                <div class="form-group">
+                    <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block">Log in</button>
+                </div>
+                <div class="clearfix">
+                    <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
+                    <a href="#" class="float-right">Forgot Password?</a>
+                </div>        
+            </form>
+            <p class="text-center"><a href="#">Create an Account</a></p>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <p>Form Status: {{loginForm.status}}</p>
+        <p>Email Status: {{loginForm.get('email').status}}</p>
+    </div>
+</div>
+    

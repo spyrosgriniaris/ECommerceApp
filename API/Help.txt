@@ -269,3 +269,46 @@ API Validation (validate incomming data with annotation etc)
 2) Checking for duplicate email addresses. RegisterDto annotations. Add code line to check for duplicate email in accountController register
 3) Validating the basket. Add Dtos for basket entities and change parameters related in basketController
 4) config swagger. Add code in swaggerserviceextensions
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CLIENT - IDENTITY
+
+1) Creating the account module - new feature -> new module -  (It is gonna be lazy loaded to login and register) -> ng g m account. Then create another module for routing
+    ng g m account-routing --flat, create service ng g s account --flat --skip-tests, then components for login and register ng g c login --skip-tests and for register
+    Add paths and imports/exports at account-routing and account modules and add account in app-routing module, add routerlinks in navbar, 
+    add interface models for user and address
+2) Create the account service methods
+3) Use reactive forms in Angular
+    Import and export in share module reactive forms module, import share module in account module. Add code for login in ts and html
+4) Submitting data to server
+5) Updating the navbar for the loggedIn user -> add code in navbar ts and html. we use ng-container because we don't want the styling of the parent div
+6) Persist the login for refresh etc. Add methods in account service and in app.component.ts
+7) Adding a dropdown to the navbar. Add bsdropdown in share module imports and exports, import share module in core and add in navbar component
+8) Form Validation in Angular. Add validtors in login.ts
+9) Displaying validation errors. With spans for every error the html gets huge. better way is a reusable component
+10) Creating a reusable text input
+    Add new component in share/components ng g c text-input --skip-tests, add it in exports of share.module
+    Add code in text-input.ts
+11) Reusable text input template and ProductConfiguration
+    Add html code in text-input and css. Replace inputs in login.html
+12) Create register form
+    Add code in register.ts and html
+13) Async validation for email address in case is in use
+    Add async validator in register.ts
+    add new div in text input
+    Add if statement in loading intercepto not to show indicator in async validation
+    For small indicator in email field, add div for pending status in text-input, add class in text input css
+14) Creating an auth guard
+    create folder guards in core -> ng g g auth --skip-tests -> CanActivate
+    Add code in auth guard
+    Add CanActivate and authguard in app-routing.module in checkout path
+    Add in login.ts var returnUrl to take the query param of state from authguard and onSubmit to navigate back to where query params says
+    After login with auth guard if i refresh i am taken back to the form (because behavior subject is null). to solve this:
+15) Using the replay subject
+    Use replay subject and not behavior in account service in order the subject to hold and cache 1 value
+    With this approach the subject waits to until it has a value
+    Refine app.component.ts and accountService to return observable of null if there is no user, otherwise authguard will do nothing and the user will not be able
+    to press Proceed to checkout
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
