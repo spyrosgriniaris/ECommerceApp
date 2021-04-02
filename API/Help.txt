@@ -312,3 +312,29 @@ CLIENT - IDENTITY
     Refine app.component.ts and accountService to return observable of null if there is no user, otherwise authguard will do nothing and the user will not be able
     to press Proceed to checkout
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+API - ORDERS 
+
+1) Creating the order aggregate (Classes that support an order that we will create in our db). Create Core->Entities->OrderAggregate
+    Add entity Address (will be associated with each order), DeliveryMethod, ProductItemOrdered, OrderStatus enum, OrderItem, Order
+2) Configuring the order entities (OrderConfiguration in infra->Config), OrderItemConfiguration, DeliveryMethodConfiguration
+3) StoreContextUpdate and seeding delivery methods. Create DbSets in StoreContext. Add StoreContextSeed for deliverymethods
+4) Creating the order migration. in solution -> dotnet ef migrations add OrderEntityAdded -p Infrastructure -s API -c StoreContext, run the api and check if
+    edlivery methods are seeded
+5) Creating an order service. Create IOrderInterface in Core -> Interfaces -> Orders. Implement service in Infra->services->orders->orderservice.cs
+    and add it in ApplicationServicesExtensions
+6) Implementing the create order method
+7) Creating the order controller, create addressdto and add mapping. Create claimprincipalextensions to retrieve user's email withon repeating code
+
+Generic repo creates a DbContext instance for every repo. we will use unit of work pattern. with this way we will have the repos but only One DbContext that will be injected
+
+8) Implement unit of work. Create iunitofwork interface, create UnitOfWork.cs in infra->data and add code and add it as service in ApplicationServicesExtensions
+    Add methods to IGeneric repository for unit of work and implement in GeneriRepository
+9) Refactoring the orderservice to use the unit of work. Remove references to different repos except for basket that is unique and useds redis which is a deifferent db
+10) Implementing the order get methods in order service. Create specification OrdersWithItemsAndOrderingSpecification, add constructors for 
+    all and individual orders and implement methods on orderservice
+11) Implementing order controller get methods for orders and deliverymethods
+12) Shapping the order data. Create OrderToReturnDto and OrderItemDto and create mapping profiles. Adjust orderController to return the dtos
+13)     Configure automapper to take the right values
+14) Another automapper value resolver in helpers -> OrderItemUrlResolver and use it in mapping profile
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------

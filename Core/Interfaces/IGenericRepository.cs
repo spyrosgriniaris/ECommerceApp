@@ -14,5 +14,10 @@ namespace Core.Interfaces
          
          // support for pagination
          Task<int> CountAsync(ISpecification<T> spec);
+
+         // unit of work
+         void Add(T Entity);
+         void Update(T Entity);
+         void Delete(T Entity);
     }
 }
