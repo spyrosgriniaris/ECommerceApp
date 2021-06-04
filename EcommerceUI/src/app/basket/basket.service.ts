@@ -5,6 +5,8 @@ import { BehaviorSubject } from 'rxjs';
 import { IBasket, IBasketItem, Basket, IBasketTotals } from '../share/models/basket/basket';
 import { map } from 'rxjs/operators';
 import { IProduct } from '../share/models/product';
+import { IDeliveryMethod } from '../share/models/checkout/deliveryMethod';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,7 @@ export class BasketService {
   // OBSERVABLES
   basket$ = this.basketSource.asObservable(); // observable. is used to get basket without having to subcribe
   basketTotal$ = this.basketTotalSource.asObservable();
+  shipping = 0;
 
   constructor(private http: HttpClient) { }
 
@@ -102,6 +105,11 @@ export class BasketService {
     );
   }
 
+  setShippingPrice(deliveryMethod: IDeliveryMethod) {
+    this.shipping = deliveryMethod.price;
+    this.calculateTotals();
+  }
+
   private mapProductItemToBasketItem(item: IProduct, quantity: number): IBasketItem {
     return  {
       id: item.id,
@@ -134,10 +142,16 @@ export class BasketService {
 
   private calculateTotals() {
     const basket = this.getCurrentBasketValue();
-    const shipping = 0;
+    const shipping = this.shipping;
     // it makes the calculation and adds it to a , that has initial value 0
     const subtotal = basket.items.reduce((a, b) => (b.price * b.quantity) + a, 0);
     const total = subtotal + shipping;
     this.basketTotalSource.next({shipping, total, subtotal});
+  }
+
+  deleteLocalBasket(id: string) {
+    this.basketSource.next(null);
+    this.basketTotalSource.next(null);
+    localStorage.removeItem('basket_id');
   }
 }

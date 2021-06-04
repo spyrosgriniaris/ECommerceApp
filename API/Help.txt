@@ -338,3 +338,29 @@ Generic repo creates a DbContext instance for every repo. we will use unit of wo
 13)     Configure automapper to take the right values
 14) Another automapper value resolver in helpers -> OrderItemUrlResolver and use it in mapping profile
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+CLIENT - checkout
+1) Import ShareModule in checkoutmodule and add code to checkout.html
+2) Creating a stepper component. run ng add @angular/cdk. we will create a stepper as a shared component, import and export CdkStepperModule in ShareModule
+3) Create a new component in share/components ng g c stepper --skip-tests and export it in share module and add it in checkout.html
+4) Setting up the stepper component. Set up stepperComponent.ts and use it in checkout.html
+5) Every step will have its own component. Create the checkout components in checkout folder, 1) ng g c checkout-address --skip-tests, 2) ng g c ckeckout-delivery --skip-tests
+    3) ng g c checkout-review --skip-tests, 4) checkout-payment and add them in checkout.html
+6) Adding the checkout form. add reactive form in checkout component
+7) Creating the address form. Set up checkout-address
+8) Creating the delivery form. Create deliveryMethod model. Create getDeliveryMethods() method in checkout service. Set up checkout-delivery component and its html
+    Use it in checkout.component.html
+9) Use http interceptor to send the token. Create an interceptor (new file) in src/app/core and add it in app.module.ts
+10) Making the basket summary shared. Create new component in shared module in components. ng g c basket-summary --skip-tests. Take the content we want and paste it in basket-summary html 
+(the table of basket). export BasketSummaryComponent in share.module.ts and import RouterModule. Set up basket-summary.component.ts. Go back in basket component and place basket summary component
+11) Checkout review component. Set up checkout-review.html. In basket summary we will have an input component as a flag that will indicate whether to show extra iunitofwork
+    like increment/decrement buttons etc. in checkout form
+12) Adding the forward back buttons for the stepper. Add button in bottom of checkout-address.html. Do the same in every checkout-xxx
+13) Using the form status to mark the step as complete. Go to checkout component where we have the cdk steps and add [completed condition]
+14) Populate the address form from the api. add getUserAddress and updateUserAddtess in acount service and getAddressFormValues in checkout.component.ts.
+15) Letting the user save the address. Add saveUserAddress in checkout-address.component.ts and add it in button save in html
+16) Updating the shipping price in basket service. create var shipping and method setShippingPrice() and in checkout-delivery and call it from html in radio buttons
+17) Create the order interface
+18) Order submission. Add method createOrder() in checkout service and deleteLocalBasket() in basket service. Add submitOrder() in checkout-payment ts and html.
+19) Checkout success page
